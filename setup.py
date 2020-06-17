@@ -38,7 +38,7 @@ setup(
     packages=find_packages(),
     description="Reference Matrix Identity Verification and Lookup Server",
     install_requires=[
-        "signedjson==1.0.0",
+        "signedjson>=1.0.0",
         "unpaddedbase64==1.1.0",
         "Twisted>=16.0.0",
 
@@ -49,6 +49,7 @@ setup(
         "pyopenssl",
         "attrs>=19.1.0",
         "netaddr>=0.7.0",
+        "nexmo",
         "sortedcontainers>=2.1.0",
         "six>=1.10",
         "pyyaml>=3.11",

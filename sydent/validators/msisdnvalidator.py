@@ -20,6 +20,7 @@ import logging
 import phonenumbers
 
 from sydent.db.valsession import ThreePidValSessionStore
+from sydent.sms.nexmo import NexmoSMS
 from sydent.validators import common
 from sydent.sms.openmarket import OpenMarketSMS
 
@@ -33,7 +34,7 @@ logger = logging.getLogger(__name__)
 class MsisdnValidator:
     def __init__(self, sydent):
         self.sydent = sydent
-        self.omSms = OpenMarketSMS(sydent)
+        self.omSms = NexmoSMS(sydent)
 
         # cache originators & sms rules from config file
         self.originators = {}
