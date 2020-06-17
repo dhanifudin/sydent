@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 class MsisdnValidator:
     def __init__(self, sydent):
         self.sydent = sydent
-        self.omSms = NexmoSMS(sydent)
+        self.omSms = self.getSMSProvider(sydent)
 
         # cache originators & sms rules from config file
         self.originators = {}
@@ -164,3 +164,11 @@ class MsisdnValidator:
         :rtype: dict[str, bool]
         """
         return common.validateSessionWithToken(self.sydent, sid, clientSecret, token)
+
+    def getSMSProvider(self, sydent):
+        provider = sydent.cfg.get('sms', 'provider')
+
+        return {
+            'openmarket': OpenMarketSMS(sydent),
+            'nexmo': NexmoSMS(sydent)
+        }.get(provider, OpenMarketSMS(sydent))
